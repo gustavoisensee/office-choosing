@@ -29,6 +29,7 @@ export const defaultOptions = (animationData) => ({
 
 // Used proxy cors-anywhere because open weather do not accept cors
 // In a real world, I would use the company own proxy which can be trusted
+// For more info: https://github.com/Rob--W/cors-anywhere
 const proxy = 'https://cors-anywhere.herokuapp.com/';
 
 // Only for test purpose the API_TOKEN is being passed by Url
