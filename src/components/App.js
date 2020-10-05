@@ -3,9 +3,9 @@ import City from './organisms/City';
 import styles from './App.module.css';
 
 const cities = [
-  { name: 'Amsterdam,NL' },
-  { name: 'London,UK' },
-  { name: 'Berlin,GE' }
+  { name: 'Amsterdam', nameForecast: 'Amsterdam,NL', img: 'assets/amsterdam.jpg' },
+  { name: 'Madrid', nameForecast: 'Madrid,ES', img: 'assets/madrid.jpg' },
+  { name: 'Budapest', nameForecast: 'Budapest,HU', img: 'assets/budapest.jpeg' }
 ];
 
 const App = () => (
