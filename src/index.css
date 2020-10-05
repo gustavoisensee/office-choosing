@@ -9,3 +9,12 @@ html,
   height: 100%;
   font-family: 'Open Sans', sans-serif;
 }
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+input {
+  font-family: 'Open Sans', sans-serif;
+}

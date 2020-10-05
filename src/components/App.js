@@ -3,9 +3,18 @@ import City from './organisms/City';
 import styles from './App.module.css';
 
 const cities = [
-  { name: 'Amsterdam', nameForecast: 'Amsterdam,NL', img: 'assets/amsterdam.jpg' },
-  { name: 'Madrid', nameForecast: 'Madrid,ES', img: 'assets/madrid.jpg' },
-  { name: 'Budapest', nameForecast: 'Budapest,HU', img: 'assets/budapest.jpeg' }
+  {
+    name: 'Amsterdam', nameForecast: 'Amsterdam,NL',
+    flyFrom: 'AMS', flyTo: 'BER,LHR,CDG,FCO,MAD', img: 'assets/amsterdam.jpg'
+  },
+  {
+    name: 'Madrid', nameForecast: 'Madrid,ES',
+    flyFrom: 'MAD', flyTo: 'BER,LHR,CDG,FCO,AMS', img: 'assets/madrid.jpg'
+  },
+  {
+    name: 'Budapest', nameForecast: 'Budapest,HU',
+    flyFrom: 'BUD', flyTo: 'BER,LHR,CDG,FCO,MAD', img: 'assets/budapest.jpeg'
+  }
 ];
 
 const App = () => (
