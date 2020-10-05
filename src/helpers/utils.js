@@ -35,4 +35,4 @@ export const getWeatherUrl = (place) =>
 
 // I beleive the same logic would be applied here for partner parameter
 export const getFlightUrl = (flyFrom, flyTo, date) =>
-`https://api.skypicker.com/flights?flyFrom=${flyFrom}&to=${flyTo}&dateFrom=${date}&dateTo=${date}&partner=picky&v=3&one_for_city=1`;
+  `https://cors-anywhere.herokuapp.com/https://api.skypicker.com/flights?flyFrom=${flyFrom}&to=${flyTo}&dateFrom=${date}&dateTo=${date}&partner=picky&v=3&one_for_city=1`;
