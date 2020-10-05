@@ -28,6 +28,7 @@ export const defaultOptions = (animationData) => ({
 });
 
 // Used proxy cors-anywhere because open weather do not accept cors
+// In a real world, I would use the company own proxy which can be trusted
 const proxy = 'https://cors-anywhere.herokuapp.com/';
 
 // Only for test purpose the API_TOKEN is being passed by Url
@@ -36,6 +37,6 @@ const proxy = 'https://cors-anywhere.herokuapp.com/';
 export const getWeatherUrl = (place) =>
   `${proxy}http://api.openweathermap.org/data/2.5/forecast?q=${place}&cnt=7&units=metric&appid=${process.env.REACT_APP_WEATHER_API_TOKEN}`;
 
-// I beleive the same logic would be applied here for partner parameter
+// I believe the same logic would be applied here for partner parameter
 export const getFlightUrl = (flyFrom, flyTo, date) =>
   `https://api.skypicker.com/flights?flyFrom=${flyFrom}&to=${flyTo}&dateFrom=${date}&dateTo=${date}&partner=picky&v=3&one_for_city=1`;
