@@ -11,6 +11,7 @@ import weatherLoading from '../../../assets/weather-loading.json';
 import loading from '../../../assets/loading.png';
 import {
   defaultOptions, errorMessage, fetcher,
+  fetchOptions,
   getFlightUrl, getWeatherUrl, nextWeek, sleep
 } from '../../../helpers/utils';
 import styles from '../City/City.module.css';
@@ -22,16 +23,16 @@ const CityItem = ({ name, nameForecast, flyFrom, flyTo, img }) => {
   const [date, setDate] = useState(nextWeek.format('YYYY-MM-DD'));
 
   const flightUrl = getFlightUrl(flyFrom, flyTo, dayjs(date).format('DD/MM/YYYY'));
-  const { data: flights, errorFlights } = useSWR(flightUrl, fetcher);
+  const { data: flights, errorFlights } = useSWR(flightUrl, fetcher, fetchOptions);
 
   const weatherUrl = getWeatherUrl(nameForecast);
-  const { data: weatherForecast, errorWeather } = useSWR(weatherUrl, fetcher);
+  const { data: weatherForecast, errorWeather } = useSWR(weatherUrl, fetcher, fetchOptions);
 
   const handleSubmit = async() => {
     // For tests purpose I'm adding a timeout
     try {
       setSubmitting(true);
-      await sleep(3000);
+      await sleep(2000);
       history.push('/chosen', { name, img })
 
     } catch (err) {
