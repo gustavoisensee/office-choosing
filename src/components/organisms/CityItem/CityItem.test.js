@@ -22,7 +22,7 @@ describe('<CityItem />', () => {
     jest.clearAllMocks();
   });
 
-  test('renders animations when there\'s no response from server yet', async() => {
+  test('renders animations when there\'s no response from server yet', () => {
     useSWR.mockImplementation(() => ({ data: undefined, error: undefined }));
 
     const { getByTestId, getByText, queryByTestId } = render(<CityItem {...mockCityItem} />);
@@ -34,7 +34,7 @@ describe('<CityItem />', () => {
     expect(queryByTestId('weather-loading')).toBeInTheDocument();
   });
 
-  test('renders message "There\'s no flights" when response is empty', async() => {
+  test('renders message "There\'s no flights" when response is empty', () => {
     useSWR.mockImplementationOnce(() => ({ data: { data: [] }, error: undefined }));
     const { getByText, queryByTestId } = render(<CityItem {...mockCityItem} />);
 
@@ -42,14 +42,14 @@ describe('<CityItem />', () => {
     expect(getByText(/no flights/)).toBeInTheDocument();
   });
 
-  test('renders the list of flights', async() => {
+  test('renders the list of flights', () => {
     useSWR.mockImplementationOnce(() => ({ data: { data: [mockFlight] }, error: undefined }));
     const { getByText } = render(<CityItem {...mockCityItem} />);
 
     expect(getByText('Paris (CDG)')).toBeInTheDocument();
   });
 
-  test('renders the list of weather', async() => {
+  test('renders the list of weather', () => {
     // This mocks flights
     useSWR.mockImplementationOnce(() => ({ data: { data: [] }, error: undefined }));
     // This mocks weather
@@ -60,7 +60,7 @@ describe('<CityItem />', () => {
     expect(getByText('12°C')).toBeInTheDocument();
   });
 
-  test('renders error messages when calls failed', async() => {
+  test('renders error messages when calls failed', () => {
     useSWR.mockImplementation(() => ({ data: undefined, error: true }));
     const { queryAllByText } = render(<CityItem {...mockCityItem} />);
 

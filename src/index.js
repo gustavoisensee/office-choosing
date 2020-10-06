@@ -8,7 +8,7 @@ import {
 import Overview from './pages/Overview';
 import Chosen from './pages/Chosen';
 import * as serviceWorker from './serviceWorker';
-import './index.css';
+import './index.module.css';
 
 const Index = () => (
   <Router>

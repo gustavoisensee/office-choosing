@@ -47,3 +47,5 @@ export const getWeatherUrl = (place) =>
 // I believe the same logic would be applied here for partner parameter
 export const getFlightUrl = (flyFrom, flyTo, date) =>
   `https://api.skypicker.com/flights?flyFrom=${flyFrom}&to=${flyTo}&dateFrom=${date}&dateTo=${date}&partner=picky&v=3&one_for_city=1`;
+
+export const getWeatherCityUrl = (cityId) => `https://openweathermap.org/city/${cityId}`;

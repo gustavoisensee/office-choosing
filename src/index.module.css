@@ -18,3 +18,23 @@ a {
 input {
   font-family: 'Open Sans', sans-serif;
 }
+
+.smallFont {
+  font-size: 12px;
+  text-align: center;
+}
+
+.childContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 8px;
+}
+
+.childContainer:first-child {
+  margin-left: 0;
+}
+
+.childContainer:last-child {
+  margin-right: 0;
+}

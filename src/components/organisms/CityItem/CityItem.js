@@ -12,12 +12,11 @@ import loading from '../../../assets/loading.png';
 import {
   defaultOptions, errorMessage, fetcher,
   fetchOptions,
-  getFlightUrl, getWeatherUrl, nextWeek, sleep
+  getFlightUrl, getWeatherCityUrl, getWeatherUrl, nextWeek, sleep
 } from '../../../helpers/utils';
-import styles from '../City/City.module.css';
-import stylesItem from './CityItem.module.css';
+import styles from './CityItem.module.css';
 
-const CityItem = ({ name, nameForecast, flyFrom, flyTo, img }) => {
+const CityItem = ({ name, nameForecast, cityIdForecast, flyFrom, flyTo, img }) => {
   const history = useHistory();
   const [submitting, setSubmitting] = useState(false);
   const [date, setDate] = useState(nextWeek.format('YYYY-MM-DD'));
@@ -77,9 +76,14 @@ const CityItem = ({ name, nameForecast, flyFrom, flyTo, img }) => {
             <Lottie options={defaultOptions(weatherLoading)} height={80} width={80} />
           </div>
         ) : (
-          weatherForecast?.list?.map((w, i) => (
-            <Weather key={`${name}-${i}`} weather={w} index={i} />
-          ))
+          <a
+            className={styles.weatherLink} href={getWeatherCityUrl(cityIdForecast)}
+            rel='noopener noreferrer' target='_blank'
+          >
+            {weatherForecast?.list?.map((w, i) => (
+              <Weather key={`${name}-${i}`} weather={w} index={i} />
+            ))}
+          </a>
         )}
       </div>
 
@@ -88,12 +92,12 @@ const CityItem = ({ name, nameForecast, flyFrom, flyTo, img }) => {
           data-testid='submit'
           type='button'
           disabled={submitting}
-          className={stylesItem.button}
+          className={styles.button}
           onClick={handleSubmit}
         >
           <span>Choose this office!</span>
           {submitting && (
-            <img alt='' src={loading} className={stylesItem.loading} />
+            <img alt='' src={loading} className={styles.loading} />
           )}
         </button>
       </div>

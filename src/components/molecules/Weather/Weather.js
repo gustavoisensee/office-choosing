@@ -1,7 +1,8 @@
 import React from 'react';
 import dayjs from 'dayjs';
-import styles from '../../organisms/City/City.module.css';
 import { getWeatherImg } from '../../../helpers/utils';
+import stylesIndex from '../../../index.module.css';
+import stylesWeather from './Weather.module.css';
 
 const today = dayjs();
 
@@ -10,13 +11,13 @@ const Weather = ({ weather, index }) => {
   const { description, icon } = weather?.weather?.[0] || {};
 
   return (
-    <div className={styles.cityChildContainer}>
+    <div className={stylesIndex.childContainer}>
       <span>{`${Math.round(temperature.temp)}°C`}</span>
-      <span className={styles.smallFont}>
+      <span className={stylesIndex.smallFont}>
         {today.add(index, 'day').format('ddd')}
       </span>
-      <img src={getWeatherImg(icon)} className={styles.icon} alt={description} />
-      <span className={styles.smallFont}>{description}</span>
+      <img src={getWeatherImg(icon)} className={stylesWeather.icon} alt={description} />
+      <span className={stylesIndex.smallFont}>{description}</span>
     </div>
   )
 };
