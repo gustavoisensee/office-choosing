@@ -8,8 +8,8 @@ describe('utils', () => {
     expect(formatPrice(50)).toEqual(expect.stringContaining(',00'));
   });
 
-  it('getWeatherImg should return http://openweathermap.org/img/wn/x1@2x.png', () => {
-    expect(getWeatherImg('x1')).toBe('http://openweathermap.org/img/wn/x1@2x.png');
+  it('getWeatherImg should return weather image url', () => {
+    expect(getWeatherImg('x1')).toBe('https://openweathermap.org/img/wn/x1@2x.png');
   });
 
   it('formatTime should return HH:mm', () => {

@@ -10,7 +10,7 @@ export const formatPrice = (value) =>
     }
   ).format(value);
 
-export const getWeatherImg = (icon) => `http://openweathermap.org/img/wn/${icon}@2x.png`;
+export const getWeatherImg = (icon) => `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
 export const formatTime = (time) => dayjs.unix(time).format('HH:mm');
 
