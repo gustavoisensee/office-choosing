@@ -3,22 +3,20 @@ import CityItem from '../CityItem/CityItem';
 import arrowImg from '../../../assets/arrow.png';
 import styles from './City.module.css';
 
-const City = ({ name, nameForecast, flyFrom, flyTo, img }) => {
+const City = (props) => {
   const [toggle, setToggle] = useState(false);
 
   return (
     <Fragment>
       <div className={styles.container} onClick={() => setToggle(!toggle)}>
         <div className={styles.titleContainer}>
-          <img src={img} alt='' className={styles.cityIcon} />
-          {name}
+          <img src={props.img} alt='' className={styles.cityIcon} />
+          {props.name}
         </div>
         <img src={arrowImg} alt='' className={toggle ? styles.arrowIconOpen : styles.arrowIcon} />
       </div>
       <div className={toggle ? styles.open : styles.closed}>
-        {toggle && (
-          <CityItem name={name} flyFrom={flyFrom} flyTo={flyTo} nameForecast={nameForecast} />
-        )}
+        {toggle && <CityItem {...props} />}
       </div>
     </Fragment>
   );

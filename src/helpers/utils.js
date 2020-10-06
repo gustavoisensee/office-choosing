@@ -18,6 +18,8 @@ export const nextWeek = dayjs().add(7, 'day');
 
 export const fetcher = url => axios.get(url).then(res => res.data);
 
+export const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 export const defaultOptions = (animationData) => ({
   loop: true,
   autoplay: true,

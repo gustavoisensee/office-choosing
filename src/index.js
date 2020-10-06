@@ -1,11 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom';
+import Overview from './pages/Overview';
+import Chosen from './pages/Chosen';
 import * as serviceWorker from './serviceWorker';
 import './index.css';
 
+const Index = () => (
+  <Router>
+    <Switch>
+      <Route path='/chosen' component={Chosen} />
+      <Route path='/' component={Overview} />
+    </Switch>
+  </Router>
+)
+
 ReactDOM.render(
-  <App />,
+  <Index />,
   document.getElementById('root')
 );
 

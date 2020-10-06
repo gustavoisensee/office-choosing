@@ -1,6 +1,6 @@
 import React from 'react';
-import City from './organisms/City';
-import styles from './App.module.css';
+import City from '../../components/organisms/City';
+import styles from './Overview.module.css';
 
 const cities = [
   {
