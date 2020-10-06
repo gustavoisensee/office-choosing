@@ -4,7 +4,9 @@ import axios from 'axios';
 export const formatPrice = (value) =>
   new Intl.NumberFormat(
     'nl-NL', {
-      style: 'currency', currency: 'EUR'
+      style: 'currency',
+      currency: 'EUR',
+      currencyDisplay: 'symbol',
     }
   ).format(value);
 

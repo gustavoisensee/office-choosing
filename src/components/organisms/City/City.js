@@ -8,7 +8,7 @@ const City = (props) => {
 
   return (
     <Fragment>
-      <div className={styles.container} onClick={() => setToggle(!toggle)}>
+      <div data-testid='city' className={styles.container} onClick={() => setToggle(!toggle)}>
         <div className={styles.titleContainer}>
           <img src={props.img} alt='' className={styles.cityIcon} />
           {props.name}

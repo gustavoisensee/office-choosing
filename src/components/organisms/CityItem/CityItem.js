@@ -59,7 +59,7 @@ const CityItem = ({ name, nameForecast, flyFrom, flyTo, img }) => {
           <span>There's no flights for the day selected, please try another day!</span>
         )}
         {!flights ? (
-          <div data-testid='flight-loading'>
+          <div data-testid='flight-loading' className={styles.flex}>
             <Lottie options={defaultOptions(flightLoading)} height={100} width={100} />
           </div>
         ) : (
@@ -73,7 +73,7 @@ const CityItem = ({ name, nameForecast, flyFrom, flyTo, img }) => {
       <div className={styles.cityContainer}>
         {errorWeather && <span>{errorMessage}</span>}
         {!weatherForecast ? (
-          <div data-testid='weather-loading'>
+          <div data-testid='weather-loading' className={styles.flex}>
             <Lottie options={defaultOptions(weatherLoading)} height={80} width={80} />
           </div>
         ) : (

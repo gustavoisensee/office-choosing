@@ -1,21 +1,7 @@
 import React from 'react';
 import City from '../../components/organisms/City';
+import { cities } from '../../helpers/mocks';
 import styles from './Overview.module.css';
-
-const cities = [
-  {
-    name: 'Amsterdam', nameForecast: 'Amsterdam,NL',
-    flyFrom: 'AMS', flyTo: 'BER,LHR,CDG,FCO,MAD', img: 'assets/amsterdam.jpg'
-  },
-  {
-    name: 'Madrid', nameForecast: 'Madrid,ES',
-    flyFrom: 'MAD', flyTo: 'BER,LHR,CDG,FCO,AMS', img: 'assets/madrid.jpg'
-  },
-  {
-    name: 'Budapest', nameForecast: 'Budapest,HU',
-    flyFrom: 'BUD', flyTo: 'BER,LHR,CDG,FCO,MAD', img: 'assets/budapest.jpeg'
-  }
-];
 
 const App = () => (
   <div className={styles.container}>
