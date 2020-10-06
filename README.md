@@ -1,6 +1,8 @@
 # Office Choosing
 It is a prototype for choosing your next office to work.
 
+![Overview](https://github.com/gustavoisensee/office-choosing/blob/master/public/overview.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
