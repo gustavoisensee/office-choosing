@@ -85,7 +85,7 @@ const CityItem = ({ name, nameForecast, flyFrom, flyTo, img }) => {
           className={stylesItem.button}
           onClick={handleSubmit}
         >
-          <span>Choose your office!</span>
+          <span>Choose this office!</span>
           {submitting && (
             <img alt='' src={loading} className={stylesItem.loading} />
           )}
