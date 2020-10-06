@@ -6,8 +6,8 @@ import { getWeatherImg } from '../../../helpers/utils';
 const today = dayjs();
 
 const Weather = ({ weather, index }) => {
-  const temperature = weather.main;
-  const { description, icon } = weather.weather[0];;
+  const temperature = weather?.main || {};
+  const { description, icon } = weather?.weather?.[0] || {};
 
   return (
     <div className={styles.cityChildContainer}>

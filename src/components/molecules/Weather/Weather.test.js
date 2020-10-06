@@ -1,24 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
+import { mockWeatherForecast } from '../../../helpers/mocks';
 import Weather from './Weather';
-
-const mockWeatherForecast = {
-  weather: {
-    dt: 1602018000,
-    main: {
-      temp: 12.15,
-    },
-    weather: [
-      {
-        id: 500,
-        main: 'Rain',
-        description: 'light rain',
-        icon: '10n'
-      }
-    ],
-  },
-  'index': 1
-};
 
 describe('<Weather />', () => {
   test('renders Weather component properly', () => {

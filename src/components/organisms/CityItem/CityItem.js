@@ -23,10 +23,10 @@ const CityItem = ({ name, nameForecast, flyFrom, flyTo, img }) => {
   const [date, setDate] = useState(nextWeek.format('YYYY-MM-DD'));
 
   const flightUrl = getFlightUrl(flyFrom, flyTo, dayjs(date).format('DD/MM/YYYY'));
-  const { data: flights, errorFlights } = useSWR(flightUrl, fetcher, fetchOptions);
+  const { data: flights, error: errorFlights } = useSWR(flightUrl, fetcher, fetchOptions);
 
   const weatherUrl = getWeatherUrl(nameForecast);
-  const { data: weatherForecast, errorWeather } = useSWR(weatherUrl, fetcher, fetchOptions);
+  const { data: weatherForecast, error: errorWeather } = useSWR(weatherUrl, fetcher, fetchOptions);
 
   const handleSubmit = async() => {
     // For tests purpose I'm adding a timeout
@@ -45,6 +45,7 @@ const CityItem = ({ name, nameForecast, flyFrom, flyTo, img }) => {
     <div className={styles.flex}>
       <h2>Flights</h2>
       <input
+        data-testid='date'
         type='date'
         placeholder='DD/MM/YYYY'
         className={styles.input}
@@ -58,9 +59,11 @@ const CityItem = ({ name, nameForecast, flyFrom, flyTo, img }) => {
           <span>There's no flights for the day selected, please try another day!</span>
         )}
         {!flights ? (
-          <Lottie options={defaultOptions(flightLoading)} height={100} width={100} />
+          <div data-testid='flight-loading'>
+            <Lottie options={defaultOptions(flightLoading)} height={100} width={100} />
+          </div>
         ) : (
-          flights.data.map((f, i) => (
+          flights?.data?.map((f, i) => (
             <Flight key={`${f.id}-${i}`} {...f} />
           ))
         )}
@@ -68,12 +71,13 @@ const CityItem = ({ name, nameForecast, flyFrom, flyTo, img }) => {
 
       <h2>Weather</h2>
       <div className={styles.cityContainer}>
-      {errorWeather && <span>{errorMessage}</span>}
+        {errorWeather && <span>{errorMessage}</span>}
         {!weatherForecast ? (
-          <Lottie options={defaultOptions(weatherLoading)} height={80} width={80}
-          />
+          <div data-testid='weather-loading'>
+            <Lottie options={defaultOptions(weatherLoading)} height={80} width={80} />
+          </div>
         ) : (
-          weatherForecast.list.map((w, i) => (
+          weatherForecast?.list?.map((w, i) => (
             <Weather key={`${name}-${i}`} weather={w} index={i} />
           ))
         )}
@@ -81,6 +85,7 @@ const CityItem = ({ name, nameForecast, flyFrom, flyTo, img }) => {
 
       <div>
         <button
+          data-testid='submit'
           type='button'
           disabled={submitting}
           className={stylesItem.button}
