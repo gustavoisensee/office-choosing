@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { chosenProps } from './types';
 import styles from './Chosen.module.css';
 
-const Chosen = ({ history }) => {
+const Chosen: FC<chosenProps> = ({ history }) => {
   const { name, img } = history?.location?.state || {};
 
   useEffect(() => {

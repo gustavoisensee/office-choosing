@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import Lottie from 'react-lottie';
 import { useHistory } from 'react-router-dom';
 import dayjs from 'dayjs';
@@ -15,8 +15,11 @@ import {
   getFlightUrl, getWeatherCityUrl, getWeatherUrl, nextWeek, sleep
 } from '../../../helpers/utils';
 import styles from './CityItem.module.css';
+import { flightProps } from '../../molecules/Flight/types';
+import { weatherType } from '../../molecules/Weather/types';
+import { cityItemProps } from './types';
 
-const CityItem = ({ name, nameForecast, cityIdForecast, flyFrom, flyTo, img }) => {
+const CityItem: FC<cityItemProps> = ({ name, nameForecast, cityIdForecast, flyFrom, flyTo, img }) => {
   const history = useHistory();
   const [submitting, setSubmitting] = useState(false);
   const [date, setDate] = useState(nextWeek.format('YYYY-MM-DD'));
@@ -62,7 +65,7 @@ const CityItem = ({ name, nameForecast, cityIdForecast, flyFrom, flyTo, img }) =
             <Lottie options={defaultOptions(flightLoading)} height={100} width={100} />
           </div>
         ) : (
-          flights?.data?.map((f, i) => (
+          flights?.data?.map((f: flightProps, i: number) => (
             <Flight key={`${f.id}-${i}`} {...f} />
           ))
         )}
@@ -80,7 +83,7 @@ const CityItem = ({ name, nameForecast, cityIdForecast, flyFrom, flyTo, img }) =
             className={styles.weatherLink} href={getWeatherCityUrl(cityIdForecast)}
             rel='noopener noreferrer' target='_blank'
           >
-            {weatherForecast?.list?.map((w, i) => (
+            {weatherForecast?.list?.map((w: weatherType, i: number) => (
               <Weather key={`${name}-${i}`} weather={w} index={i} />
             ))}
           </a>

@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from 'react';
+import React, { FC, Fragment, useState } from 'react';
 import CityItem from '../CityItem/CityItem';
 import arrowImg from '../../../assets/arrow.png';
 import styles from './City.module.css';
+import { cityProps } from './types';
 
-const City = (props) => {
+const City: FC<cityProps> = (props) => {
   const [toggle, setToggle] = useState(false);
 
   return (

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { formatPrice, formatTime } from '../../../helpers/utils';
 import stylesIndex from '../../../index.module.css';
 import stylesFlight from './Flight.module.css';
+import { flightProps } from './types';
 
-const Flight = ({ cityTo, flyTo, price, dTime, aTime, deep_link: link }) => (
+const Flight: FC<flightProps> = ({ cityTo, flyTo, price, dTime, aTime, deep_link: link }) => (
   <a href={link} rel='noopener noreferrer' target='_blank' className={stylesFlight.link}>
     <div className={stylesIndex.childContainer}>
       <span className={stylesIndex.smallFont}>
