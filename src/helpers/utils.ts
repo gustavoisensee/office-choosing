@@ -29,14 +29,13 @@ export const fetchOptions: fetchType = { revalidateOnFocus: false, errorRetryCou
 
 export const sleep = (ms: number): Promise<Function> => new Promise(resolve => setTimeout(resolve, ms));
 
-type renderSettingsType = {
-  preserveAspectRatio: string
-};
 type animationType = {
   loop: boolean;
   autoplay: boolean;
   animationData: any,
-  rendererSettings: renderSettingsType
+  rendererSettings: {
+    preserveAspectRatio: string
+  }
 };
 export const defaultOptions = (animationData: any): animationType => ({
   loop: true,
