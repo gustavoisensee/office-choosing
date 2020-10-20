@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 import dayjs from 'dayjs';
 import { getWeatherImg } from '../../../helpers/utils';
 import stylesIndex from '../../../index.module.css';
 import stylesWeather from './Weather.module.css';
+import { weatherProps } from './types';
 
 const today = dayjs();
 
-const Weather = ({ weather, index }) => {
+const Weather: FC<weatherProps> = ({ weather, index }) => {
   const temperature = weather?.main || {};
   const { description, icon } = weather?.weather?.[0] || {};
 

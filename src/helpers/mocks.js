@@ -31,7 +31,7 @@ export const mockWeatherForecast = {
       }
     ],
   },
-  'index': 1
+  'index': 0
 };
 
 export const cities = [
