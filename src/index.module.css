@@ -19,9 +19,25 @@ input {
   font-family: 'Open Sans', sans-serif;
 }
 
+.flex {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .smallFont {
   font-size: 12px;
   text-align: center;
+}
+
+.subContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: white;
+  border-radius: 4px;
+  padding: 8px;
 }
 
 .childContainer {
