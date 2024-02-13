@@ -29,7 +29,7 @@ describe('utils', () => {
 
   it('getWeatherUrl should return weather url', () => {
     expect(getWeatherUrl('Amsterdam,NL'))
-      .toBe('https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/forecast?q=Amsterdam,NL&cnt=7&units=metric&appid=a977ffb99e5d701b2cb7079181e1af67');
+      .toBe('http://api.openweathermap.org/data/2.5/forecast?q=Amsterdam,NL&cnt=7&units=metric&appid=a977ffb99e5d701b2cb7079181e1af67');
   });
 
   it('FlightUrl should return skypicker url', () => {
