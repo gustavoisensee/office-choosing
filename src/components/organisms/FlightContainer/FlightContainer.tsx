@@ -20,8 +20,9 @@ const FlightContainer: FC<FlightContainerProps> = ({ flyFrom, flyTo }) => {
   const { error: errorFlights, data: flights, isFetching } = useQuery({
     queryKey: ['flights', date],
     queryFn: () => fetcher(url, getOptions(flyFrom, flyTo, date)),
-    staleTime: 60 * 1000 * 10, // 10 min
-    enabled: true
+    staleTime: 60 * 1000 * 10, // 10min
+    retryDelay: 60 * 3000, // 3s
+    retry: 3
   })
 
   const finalFlights = flights?.data?.flightOffers || [];
