@@ -1,30 +1,30 @@
-# Office Choosing
-It is a prototype for choosing your next office to work.
+# React + TypeScript + Vite
 
-![Overview](https://github.com/gustavoisensee/office-choosing/blob/master/public/overview.png)
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Available Scripts
+Currently, two official plugins are available:
 
-In the project directory, you can run:
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-### `yarn start`
+## Expanding the ESLint configuration
 
-In order to run locally you will need a file `.env` in the root folder with the following variable:
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-```sh
-REACT_APP_WEATHER_API_TOKEN=api-token
+- Configure the top-level `parserOptions` property like this:
+
+```js
+export default {
+  // other rules...
+  parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
+}
 ```
 
-The api token for open weather can be created [here](https://openweathermap.org/guide)
-Or you can also email me and I'll give it to you.
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list

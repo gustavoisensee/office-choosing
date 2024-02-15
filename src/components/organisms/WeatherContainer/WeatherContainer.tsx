@@ -1,22 +1,26 @@
-/* eslint-disable no-useless-escape */
-import React, { FC, Fragment } from 'react';
+import { FC, Fragment } from 'react';
 import Lottie from 'react-lottie';
-import useSWR from 'swr';
+import { useQuery } from '@tanstack/react-query';
 import Weather from '../../molecules/Weather/Weather';
 import weatherLoading from '../../../assets/weather-loading.json';
 import {
   defaultOptions, errorMessage,
-  fetchOptions, fetcher,
+  fetcher,
   getWeatherCityUrl, getWeatherUrl
 } from '../../../helpers/utils';
 import { weatherContainerProps } from './types';
 import { weatherType } from '../../molecules/Weather/types';
 import weatherStyles from './WeatherContainer.module.css';
-import styles from '../../../index.module.css';
+import styles from '../../../App.module.css';
 
 const CityItem: FC<weatherContainerProps> = ({ name, nameForecast, cityIdForecast }) => {
   const weatherUrl = getWeatherUrl(nameForecast);
-  const { data: weatherForecast, error: errorWeather } = useSWR(weatherUrl, fetcher, fetchOptions);
+
+  const { error: errorWeather, data: weatherForecast } = useQuery({
+    queryKey: ['weather', nameForecast],
+    queryFn: () => fetcher(weatherUrl),
+    staleTime: 60 * 1000
+  })
 
   return (
     <Fragment>

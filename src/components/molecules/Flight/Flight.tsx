@@ -1,21 +1,27 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { formatPrice, formatTime } from '../../../helpers/utils';
-import stylesIndex from '../../../index.module.css';
+import { FlightProps } from './types';
+import stylesIndex from '../../../App.module.css';
 import stylesFlight from './Flight.module.css';
-import { flightProps } from './types';
 
-const Flight: FC<flightProps> = ({ cityTo, flyTo, price, dTime, aTime, deep_link: link }) => (
-  <a href={link} rel='noopener noreferrer' target='_blank' className={stylesFlight.link}>
-    <div className={stylesIndex.childContainer}>
-      <span className={stylesIndex.smallFont}>
-        {`${cityTo} (${flyTo})`}
-      </span>
-      <span className={stylesIndex.smallFont}>
-        {`${formatTime(dTime)} - ${formatTime(aTime)}`}
-      </span>
-      <span>{formatPrice(price)}</span>
+const Flight: FC<FlightProps> = ({ segments, priceBreakdown, flyFrom, flyTo }) => {
+  const [seg] = segments;
+  const [flyFromFirstPart] = flyFrom.split('.');
+  const [flyToFirstPart] = flyTo.split('.');
+
+  return (
+    <div className={stylesFlight.link}>
+      <div className={stylesIndex.childContainer}>
+        <span className={stylesIndex.smallFont}>
+          {`${flyFromFirstPart} → ${flyToFirstPart}`}
+        </span>
+        <span className={stylesIndex.smallFont}>
+          {`${formatTime(seg.departureTime)} - ${formatTime(seg.arrivalTime)}`}
+        </span>
+        <span>{formatPrice(priceBreakdown.total.units)}</span>
+      </div>
     </div>
-  </a>
-);
+  );
+}
 
 export default Flight;

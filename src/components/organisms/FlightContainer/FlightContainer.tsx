@@ -1,24 +1,29 @@
-/* eslint-disable no-useless-escape */
-import React, { FC, Fragment, useState } from 'react';
+import { FC, Fragment, useState } from 'react';
 import Lottie from 'react-lottie';
-import dayjs from 'dayjs';
-import useSWR from 'swr';
+import { useQuery } from '@tanstack/react-query';
+
 import Flight from '../../molecules/Flight';
 import flightLoading from '../../../assets/flight-loading.json';
 import {
   defaultOptions, errorMessage, fetcher,
-  fetchOptions,
-  getFlightUrl, nextWeek
+  nextWeek
 } from '../../../helpers/utils';
 import { FlightContainerProps } from './types';
-import styles from '../../../index.module.css';
+import styles from '../../../App.module.css';
 import flightStyles from './FlightContainer.module.css';
-import { flightProps } from '../../molecules/Flight/types';
+import { FlightProps } from '../../molecules/Flight/types';
+import { getOptions, url } from './helpers';
 
 const FlightContainer: FC<FlightContainerProps> = ({ flyFrom, flyTo }) => {
   const [date, setDate] = useState(nextWeek.format('YYYY-MM-DD'));
-  const flightUrl = getFlightUrl(flyFrom, flyTo, dayjs(date).format('DD/MM/YYYY'));
-  const { data: flights, error: errorFlights } = useSWR(flightUrl, fetcher, fetchOptions);
+
+  const { error: errorFlights, data: flights, isFetching } = useQuery({
+    queryKey: ['flights', date],
+    queryFn: () => fetcher(url, getOptions(flyFrom, flyTo, date)),
+    staleTime: 60 * 1000 * 10 // 10 min
+  })
+
+  const finalFlights = flights?.data?.flightOffers || [];
 
   return (
     <Fragment>
@@ -34,16 +39,16 @@ const FlightContainer: FC<FlightContainerProps> = ({ flyFrom, flyTo }) => {
 
       <div className={styles.subContainer}>
         {errorFlights && <span>{errorMessage}</span>}
-        {flights?.data?.length === 0 && (
+        {!isFetching && finalFlights?.length === 0 && (
           <span>There's no flights for the day selected, please try another day!</span>
         )}
-        {!flights ? (
+        {isFetching ? (
           <div data-testid='flight-loading' className={styles.flex}>
             <Lottie options={defaultOptions(flightLoading)} height={100} width={100} />
           </div>
         ) : (
-          flights?.data?.map((f: flightProps, i: number) => (
-            <Flight key={`${f.id}-${i}`} {...f} />
+          finalFlights?.map((f: FlightProps, i: number) => (
+            <Flight key={`${flyTo}-${i}`}  {...f} flyFrom={flyFrom} flyTo={flyTo} />
           ))
         )}
       </div>

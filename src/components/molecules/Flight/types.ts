@@ -1,9 +1,15 @@
-export type flightProps = {
-  id?: number,
-  cityTo: string,
-  flyTo: string
-  price: number
-  dTime: number,
-  aTime: number
-  deep_link: string
+type Seg = {
+  departureTime: string;
+  arrivalTime: string;
+};
+
+export type FlightProps = {
+  segments: Seg[];
+  priceBreakdown: {
+    total: {
+      units: number;
+    };
+  };
+  flyFrom: string;
+  flyTo: string;
 };

@@ -1,14 +1,15 @@
-import React, { FC, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { chosenProps } from './types';
+import { useEffect } from 'react';
+import { Link, redirect, useLocation } from 'react-router-dom';
+
 import styles from './Chosen.module.css';
 
-const Chosen: FC<chosenProps> = ({ history }) => {
-  const { name, img } = history?.location?.state || {};
+const Chosen = () => {
+  const location = useLocation();
+  const { name, img } = location?.state || {};
 
   useEffect(() => {
-    if (!name) history.push('/');
-  }, [history, name]);
+    if (!name) redirect('/');
+  }, [name]);
 
   return (
     <div className={styles.container}>

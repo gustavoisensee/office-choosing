@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import dayjs from 'dayjs';
 import { getWeatherImg } from '../../../helpers/utils';
-import stylesIndex from '../../../index.module.css';
+import stylesIndex from '../../../App.module.css';
 import stylesWeather from './Weather.module.css';
 import { weatherProps } from './types';
 

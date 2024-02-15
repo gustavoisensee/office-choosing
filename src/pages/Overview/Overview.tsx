@@ -1,4 +1,3 @@
-import React from 'react';
 import City from '../../components/organisms/City';
 import { cityProps } from '../../components/organisms/City/types';
 import { cities } from '../../helpers/mocks';

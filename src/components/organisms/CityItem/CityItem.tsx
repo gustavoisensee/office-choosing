@@ -1,16 +1,15 @@
-/* eslint-disable no-useless-escape */
-import React, { FC, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { FC, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { sleep } from '../../../helpers/utils';
 import FlightContainer from '../FlightContainer';
 import WeatherContainer from '../WeatherContainer';
 import loading from '../../../assets/loading.png';
 import { cityItemProps } from './types';
 import cityStyles from './CityItem.module.css';
-import styles from '../../../index.module.css';
+import styles from '../../../App.module.css';
 
 const CityItem: FC<cityItemProps> = ({ name, nameForecast, cityIdForecast, flyFrom, flyTo, img }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [submitting, setSubmitting] = useState(false);
 
   const handleSubmit = async() => {
@@ -18,7 +17,7 @@ const CityItem: FC<cityItemProps> = ({ name, nameForecast, cityIdForecast, flyFr
     try {
       setSubmitting(true);
       await sleep(2000);
-      history.push('/chosen', { name, img })
+      navigate('/chosen', { state: { name, img } });
 
     } catch (err) {
       // I'd add a error tracker like Sentry

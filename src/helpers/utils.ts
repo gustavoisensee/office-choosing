@@ -1,5 +1,5 @@
 import dayjs, {  } from 'dayjs';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 export const formatPrice = (value: number): string =>
   new Intl.NumberFormat(
@@ -13,13 +13,14 @@ export const formatPrice = (value: number): string =>
 export const getWeatherImg = (icon: string): string =>
   `https://openweathermap.org/img/wn/${icon}@2x.png`;
 
-export const formatTime = (time: number): string => dayjs.unix(time).format('HH:mm');
+export const formatTime = (time: string): string => dayjs(time).format('HH:mm');
 
 export const errorMessage: string = 'Something went wrong, please try again!';
 
 export const nextWeek: dayjs.Dayjs = dayjs().add(7, 'day');
 
-export const fetcher = (url: string): any => axios.get(url).then(res => res.data);
+export const fetcher = (url: string, options: AxiosRequestConfig = {}): any =>
+  axios.get(url, options).then(res => res.data);
 
 type fetchType = {
   revalidateOnFocus: boolean;
@@ -50,7 +51,7 @@ export const defaultOptions = (animationData: any): animationType => ({
 // In a real world I'd send it by cookies gotten from Backend previously
 // Cookies are safer, just adding Headers credentials include should do the magic
 export const getWeatherUrl = (place: string): string =>
-  `http://api.openweathermap.org/data/2.5/forecast?q=${place}&cnt=7&units=metric&appid=${process.env.REACT_APP_WEATHER_API_TOKEN}`;
+  `http://api.openweathermap.org/data/2.5/forecast?q=${place}&cnt=7&units=metric&appid=${import.meta.env.VITE_WEATHER_API_TOKEN}`;
 
 // I believe the same logic would be applied here for partner parameter
 export const getFlightUrl = (flyFrom: string, flyTo: string, date: string): string =>

@@ -1,4 +1,4 @@
-import React, { FC, Fragment, useState } from 'react';
+import { FC, Fragment, useState } from 'react';
 import CityItem from '../CityItem/CityItem';
 import arrowImg from '../../../assets/arrow.png';
 import styles from './City.module.css';
