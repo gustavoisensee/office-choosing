@@ -20,7 +20,7 @@ const CityItem: FC<weatherContainerProps> = ({ name, nameForecast, cityIdForecas
     queryKey: ['weather', nameForecast],
     queryFn: () => fetcher(weatherUrl),
     staleTime: 60 * 1000 * 10, // 10min
-    retryDelay: 3 * 3000, // 3s
+    retryDelay: 3 * 1000, // 3s
     retry: 3
   })
 
