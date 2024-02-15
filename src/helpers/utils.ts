@@ -51,7 +51,7 @@ export const defaultOptions = (animationData: any): animationType => ({
 // In a real world I'd send it by cookies gotten from Backend previously
 // Cookies are safer, just adding Headers credentials include should do the magic
 export const getWeatherUrl = (place: string): string =>
-  `http://api.openweathermap.org/data/2.5/forecast?q=${place}&cnt=7&units=metric&appid=${import.meta.env.VITE_WEATHER_API_TOKEN}`;
+  `/weather/data/2.5/forecast?q=${place}&cnt=7&units=metric&appid=${import.meta.env.VITE_WEATHER_API_TOKEN}`;
 
 // I believe the same logic would be applied here for partner parameter
 export const getFlightUrl = (flyFrom: string, flyTo: string, date: string): string =>
