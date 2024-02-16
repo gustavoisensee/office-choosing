@@ -21,7 +21,7 @@ const FlightContainer: FC<FlightContainerProps> = ({ flyFrom, flyTo }) => {
     queryKey: ['flights', date],
     queryFn: () => fetcher(url, getOptions(flyFrom, flyTo, date)),
     staleTime: 60 * 1000 * 10, // 10min
-    retryDelay: 60 * 1000, // 3s
+    retryDelay: 3 * 1000, // 3s
     retry: 3
   })
 
