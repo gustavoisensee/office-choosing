@@ -12,6 +12,12 @@ export default defineConfig({
         secure: false,
         rewrite: (path) => path.replace(/^\/weather/, ''),
       },
+      "/flights": {
+        target: "https://partners.api.skyscanner.net",
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/flights/, ''),
+      }
     }
   }
 })

@@ -1,24 +1,25 @@
 import { FC } from 'react';
-import { formatPrice, formatTime } from '../../../helpers/utils';
+import { formatPrice } from '../../../helpers/utils';
 import { FlightProps } from './types';
 import stylesIndex from '../../../App.module.css';
 import stylesFlight from './Flight.module.css';
 
-const Flight: FC<FlightProps> = ({ segments, priceBreakdown, flyFrom, flyTo }) => {
-  const [seg] = segments;
-  const [flyFromFirstPart] = flyFrom.split('.');
-  const [flyToFirstPart] = flyTo.split('.');
-
+const Flight: FC<FlightProps> = ({ outboundLeg, minPrice, flyFrom, flyTo, carriers }) => {
+  const carrier = carriers?.[outboundLeg?.marketingCarrierId] || null;
   return (
     <div className={stylesFlight.link}>
       <div className={stylesIndex.childContainer}>
+
+        {carrier && <>
+          <img src={carrier.imageUrl} width={100} className={stylesFlight.carrierImage} />
+          <span className={stylesIndex.smallFont}>
+            {carrier.name}
+          </span>
+        </>}
         <span className={stylesIndex.smallFont}>
-          {`${flyFromFirstPart} → ${flyToFirstPart}`}
+          {`${flyFrom} → ${flyTo}`}
         </span>
-        <span className={stylesIndex.smallFont}>
-          {`${formatTime(seg.departureTime)} - ${formatTime(seg.arrivalTime)}`}
-        </span>
-        <span>{formatPrice(priceBreakdown.total.units)}</span>
+        <span>{formatPrice(minPrice.amount)}</span>
       </div>
     </div>
   );
